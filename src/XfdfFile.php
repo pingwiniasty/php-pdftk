@@ -16,11 +16,10 @@ use mikehaertl\tmp\File;
 class XfdfFile extends File
 {
     // XFDF file header
-    const XFDF_HEADER = <<<FDF
+    const XFDF_HEADER = '
 <?xml version="1.0" encoding="UTF-8"?>
 <xfdf xmlns="http://ns.adobe.com/xfdf/" xml:space="preserve">
-<fields>
-FDF;
+<fields>';
 
     // XFDF file footer
     const XFDF_FOOTER = <<<FDF
