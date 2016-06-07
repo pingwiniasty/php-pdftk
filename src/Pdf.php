@@ -226,12 +226,13 @@ class Pdf
      * @param bool whether to drop XFA forms (see dropXfa()). Default is true.
      * @return Pdf the pdf instance for method chaining
      */
-    public function fillForm($data, $encoding = 'UTF-8', $dropXfa = true)
+    public function fillForm($data, $format, $encoding = 'UTF-8', $dropXfa = true)
     {
+	$className = $format==='fdf' ? 'FdfFile' : 'XfdfFile';
         $this->constrainSingleFile();
         $this->getCommand()
             ->setOperation('fill_form')
-            ->setOperationArgument(is_array($data) ? new XfdfFile($data, null, null, null, $encoding) : $data, true);
+            ->setOperationArgument(is_array($data) ? new $className($data, null, null, null, $encoding) : $data, true);
         if ($dropXfa) {
             $this->dropXfa();
         }
